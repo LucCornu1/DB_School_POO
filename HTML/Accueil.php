@@ -24,7 +24,7 @@
 		<h3>Veuillez sélectionner la page de votre choix</h3>
 
 		<script type="text/javascript">
-			var table_Lien = ["PHP/Etudiant.php"];
+			var table_Lien = ["PHP/Etudiant.php", "PHP/insertEtudiant.php"];
 
 			function over(X)
 			//Fonction qui permet de concatener une "URL"
@@ -34,7 +34,7 @@
 				X.href = chaine;
 			}
 
-			document.write("<select name='pages' id='pages'> <option value='PHP/Etudiant.php'>Affichage Etudiant</option> </select>");
+			document.write("<select name='pages' id='pages'> <option value='PHP/Etudiant.php'>Affichage Etudiant</option> <option value='PHP/insertEtudiant.php'>Insertion Etudiant</option> </select>");
 		</script>
 
 		<br>

@@ -32,7 +32,7 @@ pre:hover{ /* survol var_dump php */
 }
 
 hr{ /* séparation html */
-  border: 3px white solid;
+  border: 2px white solid;
   border-radius: 50px;
   padding: 1px;
   margin: 10px 10px 10px 10px;
@@ -126,6 +126,10 @@ h2 h3{ /* h2 et h3 centré automatiquement, rarement utilisé */
 }
 .textInput:hover{ /* au survol de l'élément précédent */
 	background-color: #5F5F5F;
+}
+
+.textInput:valid{
+	background-color: rgba(0,200,0,0.5);
 }
 
 .clDateDisplayer{ /* a utiliser avec l'api javascript weact_createElements_API => afficheur de date */

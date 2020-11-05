@@ -11,7 +11,7 @@ require_once("managerEtudiant.php");
 		<link rel="icon" href="">
 		<link rel="stylesheet" type="text/css" href="../CSS/LUCAS_style.CSS">
 		<link rel="shortcut icon" type="image/x-icon" href="">
-		<script type="text/javascript" src="../JS/JS_DOM_Formulaire.js">
+		<script type="text/javascript" src="../JS/createElement_API.js">
 			
 		</script>
 		<title>
@@ -62,7 +62,7 @@ require_once("managerEtudiant.php");
 	</head>
 
 	<body>
-		<h1 id="middle">Recherche Etudiant</h1>
+		<h1 id="middle">Insertion Etudiant</h1>
 
 		<div class="container">
 		<form id="form" name="form" action="#" method="get">
@@ -80,23 +80,14 @@ require_once("managerEtudiant.php");
 					let label = initLabel("nom", "Nom de l'Etudiant : ");
 					infos.appendChild(label);
 
-					let nom = initInput("text", "nom", "nom", 1);
-					nom.setAttribute("minlength", "0")
-					nom.setAttribute("maxlength", "30");
-					nom.setAttribute("size", "30");
-					nom.setAttribute("pattern", "[A-Za-z]{2,}")
-					infos.appendChild(nom);
+					quickInputText(infos, "nom", "nom", "Nom de l'Etudiant", "[A-Za-z]{2,}", 0, 30, 1);
 
 					createBreakline(infos, 2);
 
 					label = initLabel("prenom", "Prenom de l'Etudiant : ");
 					infos.appendChild(label);
 
-					let prenom = initInput("text", "prenom", "prenom", 1);
-					prenom.setAttribute("maxlength", "30");
-					prenom.setAttribute("size", "30");
-					prenom.setAttribute("pattern", "[A-Za-z]{2,}")
-					infos.appendChild(prenom);
+					quickInputText(infos, "prenom", "prenom", "Prenom de l'Etudiant", "[A-Za-z]{2,}", 0, 30, 1);
 
 					createBreakline(infos, 1);
 				</script>

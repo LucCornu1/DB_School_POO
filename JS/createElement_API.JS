@@ -8,7 +8,7 @@ function createBreakline(parent, rep)
 }
 
 
-
+//Fonction sur les inputs
 function initInput(type, name, id, b)
 //BUT : Créer un input
 //ENTREE : Un type, un nom et un nom d'id
@@ -17,7 +17,6 @@ function initInput(type, name, id, b)
 	let input = document.createElement("input");
 	input.setAttribute("type", type);
 	input.setAttribute("name", name);
-	input.setAttribute("placeholder", name);
 	input.setAttribute("id", id);
 
 	if(b==1)
@@ -32,6 +31,27 @@ function initInput(type, name, id, b)
 
 	return input;
 }
+
+function quickInputText(parent, name, id, placeholder, pattern, min, max, b)
+{
+	let input = document.createElement("input");
+	input.setAttribute("type", "text");
+	input.setAttribute("name", name);
+	input.setAttribute("id", id);
+	input.setAttribute("placeholder", placeholder);
+	input.setAttribute("pattern", pattern);
+	input.setAttribute("min", min);
+	input.setAttribute("max", max);
+	input.setAttribute("class", "textInput");
+
+	if(b==1)
+	{
+		input.setAttribute("required", "");
+	}
+
+	parent.appendChild(input);
+}
+
 
 function setRange(input, min, max, step, value)
 {
