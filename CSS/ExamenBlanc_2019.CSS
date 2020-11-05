@@ -95,7 +95,7 @@ a:active {
 
 .box{
 	border: solid;
-	background-color: #E3560F;
+	background-color: #42507D;
 	width: 100%;
 	min-height: 50px;
 }
@@ -106,9 +106,9 @@ a:active {
 
 .form{
 	border: solid;
-	border-color: #BE6BE7;
+	border-color: #E3680F;
 
-	background-color: #BE6BE7;
+	background-color: #E3680F;
 	border-radius: 5%;
 	margin: auto;
 }

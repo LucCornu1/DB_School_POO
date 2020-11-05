@@ -9,7 +9,7 @@ require_once("managerEtudiant.php");
 	<head>
 		<meta charset="utf-8"/>
 		<link rel="icon" href="">
-		<link rel="stylesheet" type="text/css" href="">
+		<link rel="stylesheet" type="text/css" href="../CSS/LUCAS_style.CSS">
 		<link rel="shortcut icon" type="image/x-icon" href="">
 		<script type="text/javascript" src="../JS/JS_DOM_Formulaire.js">
 			
@@ -20,25 +20,64 @@ require_once("managerEtudiant.php");
 			echo $titre;
 			?>
 		</title>
+
+		<style type="text/css">
+			table, th, td{
+				border: 1px solid white;
+				color: white;
+				margin-left: 36%
+			}
+			table#jolie td:hover{
+				color: orange;
+				font-weight: bolder;
+				cursor: cell;
+			}
+			table{
+				border-collapse: collapse;
+			}
+			table.centre{
+				margin: auto;
+			}
+			table.centre td{
+				text-align: center;
+			}
+			table#jolie th{
+				background: black;
+				color: orange;
+				padding: 5px;
+			}
+			table#jolie tr:first-child{
+				background: #130f40;
+			}
+			table#jolie tr:nth-child(2n){
+				background: #1B1464;
+			}
+			table#jolie tr:nth-child(2n+3){
+				background: #130f40;
+			}
+			table tr:only-child{
+				background: red;
+			}
+		</style>
 	</head>
 
 	<body>
 		<h1 id="middle">Formulaire utilisateur</h1>
 
-		<div class="form">
+		<div class="container">
 		<form id="form" name="form" action="#" method="get">
 		<!--La méthode get renvoie les informations dans l'url de la page ouverte, l'action possède l'adresse de la page à ouvrir.-->
 
 			<input type=hidden name="hidden" id="hidden" value="Bonjour"/>
 			<!--Un input caché contenant la valeur "Bonjour" pour pouvoir commencer à 1 lors de la récupération des informations..-->
 
-			<fieldset id="Infos">
-				<legend>Informations Générales</legend>
+			<fieldset id="Infos" class="fieldsetCat">
+				<legend class="fieldsetLegend">Informations Générales</legend>
 
 				<script type="text/javascript">
 					let infos = document.getElementById("Infos");
 
-					let label = initLabel("nom", "Nom : ");
+					let label = initLabel("nom", "Nom de l'Etudiant : ");
 					infos.appendChild(label);
 
 					let nom = initInput("text", "nom", "nom");
@@ -46,9 +85,9 @@ require_once("managerEtudiant.php");
 					nom.setAttribute("size", "20");
 					infos.appendChild(nom);
 
-					createBreakline(infos, 1);
+					createBreakline(infos, 2);
 
-					label = initLabel("prenom", "Prenom : ");
+					label = initLabel("prenom", "Prenom de l'Etudiant : ");
 					infos.appendChild(label);
 
 					let prenom = initInput("text", "prenom", "prenom");
@@ -57,33 +96,20 @@ require_once("managerEtudiant.php");
 					infos.appendChild(prenom);
 
 					createBreakline(infos, 1);
-
-					createSoloMail();
-
-					label = initLabel("ville", "Ville : ");
-					infos.appendChild(label);
-
-					let ville = initInput("text", "ville", "ville");
-					prenom.setAttribute("maxlength", "20");
-					prenom.setAttribute("size", "20");
-					infos.appendChild(ville);
-
-					createBreakline(infos, 1);
 				</script>
+
 				<br>
 			</fieldset>
 			<!--Le fieldset permet de regrouper divers éléments du formulaire et d'y associer une légende.-->
 
 			<br>
 
-			<fieldset>
-				<legend>Fin de formulaire</legend>
-				<div id="BoutonsFormulaires">
-					<label for="reset">Reset : </label><input class="boutonsFormulaires" type="reset" name="reset" id="reset" value="Reset"/><br>
+			<fieldset class="fieldsetCat" id="fieldset0">
+				<legend class="fieldsetLegend">Fin de formulaire</legend>
+					<label for="reset" class="cLabel">Reset : </label><input class="btn" type="reset" name="reset" id="reset" value="Reset"/><br>
 					<!--Réception de l'information d'annulation du contenu du formulaire dans un input de type reset et d'id reset.-->
-					<label for="submit">Valider : </label><input class="boutonsFormulaires" type="submit" name="submit" id="submit" value="Valider" onClick="changePage()"/><br>
+					<label for="submit" class="cLabel">Valider : </label><input class="btn" type="submit" name="submit" id="submit" value="Valider" onClick="changePage()"/><br>
 					<!--Réception de l'information de soumission du contenu du formulaire dans un input de type submit et d'id submit. A envoyé dans une page traitement formulaire.-->
-				</div>
 				<!--Boutons pour annuler ou soumettre la saisie.-->
 			</fieldset>
 		</form>
@@ -96,17 +122,23 @@ require_once("managerEtudiant.php");
 
 			$E = new Etudiant;
 
-			$tab = array(
-				"id" => 1,
-				"Nom" => "DEMIEUX",
-				"Prenom" => "Saskia",
-				"Email" => "Saskia.DEMIEUX@mail.com",
-				"DDN" => "02/10/1998"
-			);
 
-			$E->hydrate($tab);
+			if(isset($_GET['nom']) && isset($_GET['prenom']))
+			{
+				$tab = array(
+					"Nom" => $_GET['nom'],
+					"Prenom" => $_GET['prenom']
+					);
 
-			$C->req_selectAll($E);
+				$E->hydrate($tab);
+
+				$stmt = $C->selectEtudiant($E);
+
+				if(isset($stmt))
+				{
+					$C->afficheEtudiant($stmt);
+				}
+			}
 		?>
 
 		<br>

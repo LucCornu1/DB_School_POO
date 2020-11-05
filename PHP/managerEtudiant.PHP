@@ -37,24 +37,41 @@ class managerEtudiant
 		return "Database=".$this->getDb();
 	}
 
-	public function req_selectAll(Etudiant $E)
+	public function selectEtudiant(Etudiant $E)
 	{
-		$req = "SELECT * FROM Etudiant WHERE id_Etudiant=".$E->getId();
+		$req = "SELECT libelle_Civilite, nom_Etudiant, prenom_Etudiant, email_Etudiant FROM Etudiant E, Civilite C WHERE nom_Etudiant = :NOM AND prenom_Etudiant = :PRENOM AND E.id_Civilite = C.id_Civilite";
 
+		//Envoie de la requête à la base
 		try
 		{
 			$stmt = $this->db->prepare($req);
+
+			$stmt->bindValue(":NOM", $E->getNom(), PDO::PARAM_STR);
+			$stmt->bindValue(":PRENOM", $E->getPrenom(), PDO::PARAM_STR);
+
 			$stmt->execute();
 
-			foreach($stmt as $row)
-			{
-				echo '<p>'.$row['id_Etudiant']." ".$row['nom_Etudiant']." ".$row['prenom_Etudiant']." ".$row['email_Etudiant']." ".$row['DDN_Etudiant'].'</p>';
-			}
+			return $stmt;
 		}
 		catch(PDOException $error)
 		{
 			echo $error->getMessage();
-			exit();
+			return NULL;
+		}
+	}
+
+	public function afficheEtudiant($stmt)
+	{
+		if($stmt->rowCount()>0)
+		{
+			foreach($stmt as $row)
+			{
+				echo "<table><th>CIVILITE</th><th>NOM</th><th>PRENOM</th><th>EMAIL</th>";
+				echo "<tr><td>".$row['libelle_Civilite']."</td><td>".$row['nom_Etudiant']."</td><td>".$row['prenom_Etudiant']."</td><td>".$row['email_Etudiant']."</td></tr>";
+				echo "</table>";
+			}
+		}else{
+			echo "La requête ne retourne rien";
 		}
 	}
 }

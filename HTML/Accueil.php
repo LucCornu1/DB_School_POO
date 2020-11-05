@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8"/>
 		<link rel="icon" href="">
-		<link rel="stylesheet" type="text/css" href="CSS/ExamenBlanc_2019.CSS">
+		<link rel="stylesheet" type="text/css" href="../CSS/ExamenBlanc_2019.CSS">
 		<link rel="shortcut icon" type="image/x-icon" href="">
 		<script type="text/javascript" src="">
 			
@@ -24,18 +24,17 @@
 		<h3>Veuillez sélectionner la page de votre choix</h3>
 
 		<script type="text/javascript">
-			var table_Lien = ["HTML/Page1.html", "HTML/Page2.html", "HTML/JS_DOM_ExamenBlanc_2019.html"];
+			var table_Lien = ["PHP/Etudiant.php"];
 
 			function over(X)
 			//Fonction qui permet de concatener une "URL"
 			{
-				var chaine = "HTML/";
+				let chaine = "../";
 				chaine += document.getElementById('pages').value;
-				chaine += ".html";
 				X.href = chaine;
 			}
 
-			document.write("<select name='pages' id='pages'> <option value='Page1'>Page 1</option> <option value='Page2'>Page 2</option> <option value='JS_DOM_ExamenBlanc_2019'>JS_DOM_ExamenBlanc_2019</option></select>");
+			document.write("<select name='pages' id='pages'> <option value='PHP/Etudiant.php'>Affichage Etudiant</option> </select>");
 		</script>
 
 		<br>

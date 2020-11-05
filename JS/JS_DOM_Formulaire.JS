@@ -19,6 +19,11 @@ function initInput(type, name, id)
 	input.setAttribute("name", name);
 	input.setAttribute("id", id);
 
+	if(type = "text")
+	{
+		input.setAttribute("class", "textInput");
+	}
+
 	return input;
 }
 
@@ -47,14 +52,14 @@ function initDiv(class_Div, id_Div)
 	return div;
 }
 
-function quickDiv(class_Div, id_Div, parent)
+function quickDiv(parent, id)
 //BUT : Créer rapidement un div
 //ENTREE : Un nom de classe, un nom d'id et un parent
 //SORTIE : / (Créer directement le div dans la page)
 {
 	let div = document.createElement("div");
-	div.setAttribute("class", class_Div);
-	div.setAttribute("id", id_Div);
+	div.setAttribute("class", "container");
+	div.setAttribute("id", id);
 
 	parent.appendChild(div);
 	return div;
@@ -66,9 +71,10 @@ function initLabel(for_Label, string)
 //SORTIE : Le label créé
 {
 	let label = document.createElement("label");
-	addAttribute(label, "for", for_Label);
+	label.setAttribute("for", for_Label);
+	label.setAttribute("class", "cLabel");
 	let node = document.createTextNode(string);
-	addElementChild(node, label);
+	label.appendChild(node);
 
 	return label;
 }
